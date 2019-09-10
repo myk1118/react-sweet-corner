@@ -1,4 +1,4 @@
-# React Starter
+# React Sweet Corner
 
 > This repo contains boilerplate code to aid in the creation of a new React app with Redux. Follow the below setup instructions to get started.
 
@@ -6,9 +6,9 @@
 
 > 1. Fork this repo
 > 1. Clone your forked copy of this repo
->    - `git clone https://github.com/[Your Username]/react_starter.git`
+>    - `git clone https://github.com/myk1118/react-sweet-corner.git`
 > 1. Change directory into the newly cloned repo
->    - `cd react_starter`
+>    - `cd react-sweet-corner`
 > 1. Install dependencies 
 >    - `npm install`
 > 1. Start dev server

@@ -1,8 +1,3 @@
-@font-face {
-    font-family: gotham;
-    src: url('../../assets/fonts/Gotham-Book.otf')
-}
-
 .main-nav {
     width: 35vw;
     display: flex;
@@ -13,7 +8,7 @@
 }
 
 .navItem {
-    font-family: gotham;
+    font-family: gothamMedium;
 
     a {
         color: #be7e3e;

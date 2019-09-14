@@ -3,11 +3,12 @@
     background-color: #06b4af;
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .dotsFooter {
     position: absolute;
-    left: 8%;
+    left: 5%;
 }
 
 .copyright,
@@ -24,9 +25,10 @@
 .phone {
     display: flex;
     position: absolute;
-    right: 8%;
+    right: 5%;
 }
 
 .phoneIcon {
     margin-right: 12px;
+    height: max-content;
 }

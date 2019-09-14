@@ -7,8 +7,8 @@ const Footer = () => {
     const year = new Date().getFullYear();
     return (
         <div className="blueBar">
-            <img src={dotsFooter} alt="dotsFooter" className="dotsFooter" />
             <div className="center copyright">Copyright &copy; {year} Sweet Corner. All rights reserved.</div>
+            <img src={dotsFooter} alt="dotsFooter" className="dotsFooter" />
             <div className="phone">
                 <img src={phone} alt="phoneIcon" className="phoneIcon" />
                 <div className="phoneNumber">800 264 2099</div>

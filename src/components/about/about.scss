@@ -1,0 +1,32 @@
+.aboutTop {
+    background-image: url("../../assets/images/strips1.png");
+    background-repeat: repeat-y;
+    background-position: right;
+}
+
+.aboutBody {
+    width: 62%;
+    padding: 36px;
+}
+
+.dotsBox1 {
+    float: right;
+    position: relative;
+    top: 100px;
+    right: 200px;
+}
+
+.aboutTitle {
+    font-family: sail;
+    padding: 36px;
+    margin: 0;
+}
+
+.aboutBody {
+    padding: 0 36px 36px 36px;
+}
+
+.aboutTitle,
+.aboutBody {
+    color: #be7e3e;
+}

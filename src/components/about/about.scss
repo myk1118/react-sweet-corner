@@ -4,9 +4,9 @@
     background-position: right;
 }
 
-.aboutBody {
+.aboutTextContainer {
     width: 62%;
-    padding: 36px;
+    padding: 36px 0 36px 36px;
 }
 
 .dotsBox1 {
@@ -18,12 +18,11 @@
 
 .aboutTitle {
     font-family: sail;
-    padding: 36px;
-    margin: 0;
+    margin-top: 0;
 }
 
 .aboutBody {
-    padding: 0 36px 36px 36px;
+    line-height: 16pt;
 }
 
 .aboutTitle,

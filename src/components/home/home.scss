@@ -1,4 +1,4 @@
-.homeTopPart {
+.homeTop {
     background-image: url("../../assets/images/strips2.png");
     background-repeat: repeat-y;
     background-position: right;
@@ -25,8 +25,12 @@
     font-family: sail;
 }
 
+.homeBody {
+    line-height: 16pt;
+}
+
 .homeTitle,
 .sweetContent,
-.homeParagraph {
+.homeBody {
     color: #be7e3e;
 }

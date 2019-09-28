@@ -10,7 +10,7 @@ class Products extends Component {
         // console.log("this.props: ", this.props);
     }
     goToDetails(id) {
-        console.log("this.props.history: ", this.props.history);
+        // console.log("this.props.history: ", this.props.history);
         this.props.history.push(`/products/${id}`)
     }
     render() {

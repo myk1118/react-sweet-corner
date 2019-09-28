@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './products.scss';
 import { getAllProducts } from '../../actions';
+import ProductItem from './product_item';
 
 class Products extends Component {
     componentDidMount() {
@@ -11,10 +12,17 @@ class Products extends Component {
     render() {
         // console.log("this.props.products: ", this.props.products);
         const { products } = this.props;
-        console.log("Products: ", products);
+        // console.log("Products: ", products);
+        const productItems = products.map(product => {
+            return <ProductItem
+                {...product}
+                key={product.id}
+            />
+        })
         return (
             <div className="products">
                 <h1>Products Page</h1>
+                <div className="productsContainer">{productItems}</div>
             </div>
         );
     }

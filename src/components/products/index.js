@@ -9,14 +9,19 @@ class Products extends Component {
         this.props.getAllProducts();
         // console.log("this.props: ", this.props);
     }
+    goToDetails(id) {
+        console.log("this.props.history: ", this.props.history);
+        this.props.history.push(`/products/${id}`)
+    }
     render() {
         // console.log("this.props.products: ", this.props.products);
         const { products } = this.props;
         // console.log("Products: ", products);
         const productItems = products.map(product => {
             return <ProductItem
-                {...product}
                 key={product.id}
+                {...product}
+                goToDetails={this.goToDetails.bind(this, product.id)}
             />
         })
         return (

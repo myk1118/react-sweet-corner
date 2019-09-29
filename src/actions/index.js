@@ -37,3 +37,9 @@ export const getProductDetails = (productId) => async dispatch => {
         console.log("Error getting product details: ", error);
     }
 }
+
+export const clearProductDetails = () => {
+    return {
+        type: types.CLEAR_PRODUCT_DETAILS
+    }
+}

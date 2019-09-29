@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getProductDetails } from '../../actions'
+import { getProductDetails, clearProductDetails } from '../../actions'
 import Money from '../general/money';
 
 class ProductDetails extends Component {
@@ -10,6 +10,10 @@ class ProductDetails extends Component {
         const { getProductDetails, match: { params: { product_id } } } = this.props;
         // console.log("Product ID: ", product_id);
         getProductDetails(product_id);
+    }
+    componentWillUnmount() {
+        console.log("ProductDetails component about to unmount");
+        this.props.clearProductDetails();
     }
     render() {
         const { details } = this.props;
@@ -30,7 +34,7 @@ class ProductDetails extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log("Product Details State: ", state)
+    // console.log("Product Details State: ", state)
     return {
         details: state.products.details
     }
@@ -38,5 +42,6 @@ const mapStateToProps = state => {
 
 // Using connect to connect getProductDetails to Redux and the <ProductDetails> component
 export default connect(mapStateToProps, {
-    getProductDetails: getProductDetails
+    getProductDetails: getProductDetails,
+    clearProductDetails: clearProductDetails
 })(ProductDetails);

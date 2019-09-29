@@ -2,7 +2,7 @@ import React from 'react';
 import Money from '../general/money'
 
 const ProductItem = (props) => {
-    console.log("Props: ", props);
+    // console.log("Props: ", props);
     const { name, thumbnail, caption, cost, goToDetails } = props
     return (
         <div className="product-item col-4" onClick={goToDetails}>

@@ -17,6 +17,11 @@ export default (state = DEFAULT_STATE, action) => {
                 ...state,
                 details: action.product
             }
+        case types.CLEAR_PRODUCT_DETAILS:
+            return {
+                ...state,
+                details: null
+            }
         default:
             return state;
     }

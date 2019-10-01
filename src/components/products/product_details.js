@@ -4,6 +4,12 @@ import { getProductDetails, clearProductDetails } from '../../actions'
 import Money from '../general/money';
 
 class ProductDetails extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            quantity: 1
+        }
+    }
     componentDidMount() {
         // console.log("Product Details Component Mounted");
         // console.log("Product ID: ", this.props.match.params.product_id);
@@ -15,7 +21,26 @@ class ProductDetails extends Component {
         console.log("ProductDetails component about to unmount");
         this.props.clearProductDetails();
     }
+    incrementQuantity = () => {
+        const { quantity } = this.state;
+        this.setState({
+            quantity: quantity + 1
+        })
+    }
+    decrementQuantity = () => {
+        const { quantity } = this.state;
+        if (quantity === 1) return;
+        this.setState({
+            quantity: quantity - 1
+        });
+    }
+    handleAddToCart = () => {
+        const { quantity } = this.state;
+        const { id } = this.props.details;
+        console.log(`Add ${quantity} items to cart, with product ID: ${id}`)
+    }
     render() {
+        // console.log("this.props: ", this.props);
         const { details } = this.props;
         if (!details) {
             return <div>Loading...</div>
@@ -28,6 +53,15 @@ class ProductDetails extends Component {
                 <div>{details.caption}</div>
                 <div>{details.description}</div>
                 <div><Money money={details.cost} /></div>
+                <div className="product-quantity right mb-3">
+                    <h2 className="left">Quantity</h2>
+                    <div className="quantity-controls">
+                        <button className="btn btn-quantity" onClick={this.decrementQuantity}>-</button>
+                        <span className="quantity">{this.state.quantity}</span>
+                        <button className="btn btn-quantity" onClick={this.incrementQuantity}>+</button>
+                    </div>
+                    <button className="btn" onClick={this.handleAddToCart}>Add To Cart</button>
+                </div>
             </div>
         )
     }

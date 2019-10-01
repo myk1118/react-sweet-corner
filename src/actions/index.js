@@ -43,3 +43,34 @@ export const clearProductDetails = () => {
         type: types.CLEAR_PRODUCT_DETAILS
     }
 }
+
+export const addItemToCart = (productId, quantity) => async (dispatch) => {
+    try {
+        // console.log(`From Action Creator, quantity: ${quantity} Product ID: ${productId}`);
+        const cartToken = localStorage.getItem('sc-cart-token');
+        const axiosConfig = {
+            headers: {
+                'X-Cart-Token': cartToken
+            }
+        }
+        const response = await axios.post(
+            `${BASE_URL}/api/cart/items/${productId}`,
+            { quantity: quantity },
+            axiosConfig
+        );
+        console.log('From Action Creator - Response: ', response);
+        localStorage.setItem('sc-cart-token', response.data.cartToken);
+
+        // We are saving the cartToken into localStorage so that we can send it in 
+        // future requests. The cartToken is how the server knows which cart belongs to 
+        // who and by us saving it into localStorage even if we leave the website and 
+        // comeback later our shopping cart will still be there as we left it.
+
+        dispatch({
+            type: types.ADD_ITEM_TO_CART,
+            cartTotal: response.data.total
+        })
+    } catch (error) {
+        console.log('Add Item to Cart Error: ', error.message);
+    }
+}

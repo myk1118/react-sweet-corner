@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getProductDetails, clearProductDetails } from '../../actions'
+import { getProductDetails, clearProductDetails, addItemToCart } from '../../actions'
 import Money from '../general/money';
 
 class ProductDetails extends Component {
@@ -37,7 +37,8 @@ class ProductDetails extends Component {
     handleAddToCart = () => {
         const { quantity } = this.state;
         const { id } = this.props.details;
-        console.log(`Add ${quantity} items to cart, with product ID: ${id}`)
+        // console.log(`Add ${quantity} items to cart, with product ID: ${id}`);
+        this.props.addItemToCart(id, quantity);
     }
     render() {
         // console.log("this.props: ", this.props);
@@ -45,7 +46,7 @@ class ProductDetails extends Component {
         if (!details) {
             return <div>Loading...</div>
         }
-        console.log("Product Details: ", details);
+        // console.log("Product Details: ", details);
         return (
             <div className="product-details">
                 <img src={details.image.url} />
@@ -77,5 +78,6 @@ const mapStateToProps = state => {
 // Using connect to connect getProductDetails to Redux and the <ProductDetails> component
 export default connect(mapStateToProps, {
     getProductDetails: getProductDetails,
-    clearProductDetails: clearProductDetails
+    clearProductDetails: clearProductDetails,
+    addItemToCart: addItemToCart
 })(ProductDetails);

@@ -8,7 +8,7 @@ class Cart extends Component {
         this.props.getActiveCart();
     }
     render() {
-        console.log('Cart Items: ', this.props.cartItems);
+        // console.log('Cart Items: ', this.props.cartItems);
         return (
             <div>
                 <h1 className="center">Cart</h1>
@@ -18,7 +18,7 @@ class Cart extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log("Cart State: ", state);
+    // console.log("Cart State: ", state);
     return {
         cartItems: state.cart.items
     }

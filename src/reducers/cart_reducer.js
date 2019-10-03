@@ -22,6 +22,12 @@ export default (state = DEFAULT_STATE, action) => {
                 items: action.cart.items,
                 total: action.cart.total
             };
+        case types.GET_CART_TOTALS:
+            // console.log('Cart Reducer - Get Cart Totals Action:', action);
+            return {
+                ...state,
+                total: action.total
+            };
         default:
             return state;
     }

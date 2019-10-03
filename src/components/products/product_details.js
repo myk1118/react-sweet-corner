@@ -34,11 +34,12 @@ class ProductDetails extends Component {
             quantity: quantity - 1
         });
     }
-    handleAddToCart = () => {
+    handleAddToCart = async () => {
         const { quantity } = this.state;
         const { id } = this.props.details;
         // console.log(`Add ${quantity} items to cart, with product ID: ${id}`);
-        this.props.addItemToCart(id, quantity);
+        await this.props.addItemToCart(id, quantity);
+        this.props.history.push('/cart');
     }
     render() {
         // console.log("this.props: ", this.props);

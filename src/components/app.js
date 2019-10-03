@@ -10,6 +10,7 @@ import Services from './services';
 import Products from './products';
 import ProductDetails from './products/product_details';
 import Cart from './cart';
+import Guest from '../components/checkout/guest_checkout';
 
 const App = () => (
     <div className="app">
@@ -22,6 +23,7 @@ const App = () => (
             <Route path="/products" exact component={Products} />
             <Route path="/products/:product_id" component={ProductDetails} />
             <Route path="/cart" component={Cart} />
+            <Route path="/checkout/guest" component={Guest} />
             <Footer />
         </div>
     </div>

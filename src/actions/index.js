@@ -74,3 +74,26 @@ export const addItemToCart = (productId, quantity) => async (dispatch) => {
         console.log('Add Item to Cart Error: ', error.message);
     }
 }
+
+export const getActiveCart = () => async dispatch => {
+    try {
+        // console.log("Get active cart action creator");
+        const cartToken = localStorage.getItem('sc-cart-token');
+        const axiosConfig = {
+            headers: {
+                'X-Cart-Token': cartToken
+            }
+        }
+        const response = await axios.get(
+            `${BASE_URL}/api/cart`,
+            axiosConfig
+        )
+        // console.log('Get active cart server response:', response);
+        dispatch({
+            type: types.GET_ACTIVE_CART,
+            cart: response.data
+        })
+    } catch (error) {
+        console.log("Get active cart Error: ", error.message);
+    }
+}

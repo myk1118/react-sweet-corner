@@ -47,7 +47,7 @@ export const clearProductDetails = () => {
 export const addItemToCart = (productId, quantity) => async (dispatch) => {
     try {
         // console.log(`From Action Creator, quantity: ${quantity} Product ID: ${productId}`);
-        const cartToken = localStorage.getItem('sc-cart-token');
+        const cartToken = await localStorage.getItem('sc-cart-token');
         const axiosConfig = {
             headers: {
                 'X-Cart-Token': cartToken
@@ -78,7 +78,7 @@ export const addItemToCart = (productId, quantity) => async (dispatch) => {
 export const getActiveCart = () => async dispatch => {
     try {
         // console.log("Get active cart action creator");
-        const cartToken = localStorage.getItem('sc-cart-token');
+        const cartToken = await localStorage.getItem('sc-cart-token');
         const axiosConfig = {
             headers: {
                 'X-Cart-Token': cartToken
@@ -101,7 +101,7 @@ export const getActiveCart = () => async dispatch => {
 export const getCartTotals = () => async dispatch => {
     try {
         // console.log('Get cart totals action creator');
-        const cartToken = localStorage.getItem('sc-cart-token');
+        const cartToken = await localStorage.getItem('sc-cart-token');
         const axiosConfig = {
             headers: {
                 'X-Cart-Token': cartToken
@@ -118,5 +118,38 @@ export const getCartTotals = () => async dispatch => {
         })
     } catch (error) {
         console.log('Error getting cart totals:', error);
+    }
+}
+
+export const createGuestOrder = guest => async dispatch => {
+    try {
+        console.log('Create guest order, guest data:', guest);
+        const cartToken = localStorage.getItem('sc-cart-token');
+        const axiosConfig = {
+            headers: {
+                'X-Cart-Token': cartToken
+            }
+        }
+        const response = await axios.post(
+            `${BASE_URL}/api/orders/guest`,
+            guest,
+            axiosConfig
+        )
+        console.log('Create guest order response:', response);
+        localStorage.setItem("sc-cart-token", response.data.cartToken);
+        localStorage.clear();
+        dispatch({
+            type: types.CREATE_GUEST_ORDER,
+            order: {
+                id: response.data.guest,
+                message: response.data.message
+            }
+        });
+        return {
+            email: guest.email,
+            orderId: response.data.id
+        }
+    } catch (error) {
+        console.log('Error with guest checkout:', error);
     }
 }

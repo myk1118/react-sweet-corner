@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { createGuestOrder } from '../../actions';
 import { Field, reduxForm } from 'redux-form';
 import CustomInput from '../general/form/CustomInput';
 import './checkout.scss';
 
-class Guest extends Component {
-    handleGuestCheckout(formValues) {
-        console.log("Guest Checkout Form Values: ", formValues);
+class GuestCheckout extends Component {
+    handleGuestCheckout = async (formValues) => {
+        // console.log("Guest Checkout Form Values: ", formValues);
+        const orderInfo = await this.props.createGuestOrder(formValues);
+        console.log("Order Info: ", orderInfo);
+        const redirectUrl = `/orders/guest/${orderInfo.orderId}?email=${orderInfo.email}`;
+        this.props.history.push(redirectUrl);
     }
     render() {
         const { handleSubmit } = this.props;
@@ -36,6 +42,10 @@ class Guest extends Component {
     }
 }
 
-export default reduxForm({
-    form: 'guest-checkout-form'
-})(Guest);
+GuestCheckout = reduxForm({
+    form: "checkout-form",
+})(GuestCheckout);
+
+export default connect(null, {
+    createGuestOrder: createGuestOrder
+})(GuestCheckout);

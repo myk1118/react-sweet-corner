@@ -150,6 +150,26 @@ export const createGuestOrder = guest => async dispatch => {
             orderId: response.data.id
         }
     } catch (error) {
-        console.log('Error with guest checkout:', error);
+        console.log('Error with guest checkout: ', error);
+    }
+}
+
+export const getGuestOrderDetails = (orderId, email) => async dispatch => {
+    try {
+        console.log("Get Guest Order Details Order ID: ", orderId);
+        console.log("Get Guest Order Details email: ", email);
+        const response = await axios.get(
+            `${BASE_URL}/api/orders/guest/${orderId}`, {
+            params: {
+                email: email
+            }
+        });
+        console.log('Gest guest order details response: ', response);
+        dispatch({
+            type: types.GET_GUEST_ORDER_DETAILS,
+            orderDetails: response.data
+        })
+    } catch (error) {
+        console.log('Error with guest order details: ', error);
     }
 }
